@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const crypto = require('crypto');
+const cors = require('cors');
 
 const SECRET = "ethergaergareg";
 const MAX_MESSAGES = 100;
@@ -27,10 +28,14 @@ function verify_auth_token(token) {
 var messages = [];
 var users = {};
 
+app.use(cors())
 app.use(bodyParser.json())
 app.post('/api/login',
   (req, res) => {
     const username = req.body.username;
+    if (!username) {
+      return res.status(403).send("No username sent.");
+    }
     const token = make_auth_token(username);
     res.send({auth_token: token});
   }
@@ -62,4 +67,4 @@ app.post('/api/messages',
   }
 )
 
-app.listen(3000, () => console.log('Chat app listening on port 3000!'))
+app.listen(3001, () => console.log('Chat app listening on port 3001!'))
