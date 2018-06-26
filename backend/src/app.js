@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const crypto = require('crypto');
 const cors = require('cors');
 
-const SECRET = "ethergaergareg";
+const SECRET = "SUPERSECRET";
 const MAX_MESSAGES = 100;
 
 const app = express();
@@ -31,8 +31,9 @@ function getMessages() {
   return [...messages].reverse();
 }
 
-app.use(cors())
-app.use(bodyParser.json())
+app.use(cors());
+app.use(bodyParser.json());
+
 app.post('/api/login',
   (req, res) => {
     const username = req.body.username;
@@ -42,7 +43,8 @@ app.post('/api/login',
     const token = make_auth_token(username);
     res.send({auth_token: token});
   }
-)
+);
+
 app.get('/api/messages',
   (req, res) => {
     const token = req.headers.authorization.split(" ")[1];
@@ -52,7 +54,8 @@ app.get('/api/messages',
     }
     res.send(getMessages());
   }
-)
+);
+
 app.post('/api/messages',
   (req, res) => {
     const token = req.headers.authorization.split(" ")[1];
@@ -68,6 +71,6 @@ app.post('/api/messages',
     messages = messages.slice(0, MAX_MESSAGES);
     res.send(getMessages());
   }
-)
+);
 
-app.listen(3001, () => console.log('Chat app listening on port 3001!'))
+app.listen(3001, () => console.log('Chat app listening on port 3001!'));
