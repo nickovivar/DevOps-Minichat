@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Login.css';
+import {Button, FormGroup, FormControl} from 'react-bootstrap';
 
 class Login extends Component {
   constructor(props) {
@@ -15,17 +15,18 @@ class Login extends Component {
   render() {
     return (
       <div className="login">
-        <input
+        <h2>What's your name?</h2>
+        <FormControl
           type="text"
           value={this.state.username}
           onChange={this.setUsername}
           />
-        <button
+        <Button
           disabled={this.state.username.trim() === ""}
           onClick={this.handleLogin}
         >
         Log in
-        </button>
+        </Button>
       </div>
     );
   }

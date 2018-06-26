@@ -24,9 +24,12 @@ function verify_auth_token(token) {
     }
 }
 
-
 var messages = [];
 var users = {};
+
+function getMessages() {
+  return [...messages].reverse();
+}
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -47,7 +50,7 @@ app.get('/api/messages',
     if (user === null) {
       return res.status(401).send("Not authenticated.");
     }
-    res.send(messages)
+    res.send(getMessages());
   }
 )
 app.post('/api/messages',
@@ -63,7 +66,7 @@ app.post('/api/messages',
     }
     messages.unshift({sender: user, message});
     messages = messages.slice(0, MAX_MESSAGES);
-    res.send([...messages].reverse());
+    res.send(getMessages());
   }
 )
 

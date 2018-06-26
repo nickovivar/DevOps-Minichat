@@ -1,13 +1,33 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
 import config from './config';
+import {Button, FormGroup, InputGroup, FormControl, Form} from 'react-bootstrap';
+
+const colours = [
+  "red", "green", "blue", "teal"
+]
 
 class Message extends Component {
+  colourFor = username => {
+    let hash = 0;
+    for (let i = 0; i < username.length; i++) {
+      hash  = ((hash << 5) - hash) + username.charCodeAt(i);
+      hash |= 0; // Convert to 32bit integer
+    }
+    const colourIndex = hash % colours.length;
+    return colours[colourIndex];
+  }
+
   render() {
+    const sender = this.props.sender;
     return [
-      <dd key={0}>{this.props.sender}</dd>,
-      <dt key={1}>{this.props.message}</dt>
+      <dt
+        key={0}
+        style={{color: this.colourFor(sender)}}
+      >{sender}</dt>,
+      <dd
+        key={1}
+      >{this.props.message}</dd>
     ]
   }
 }
@@ -15,7 +35,7 @@ class Message extends Component {
 class MessageList extends Component {
   render() {
     return (
-      <dl>
+      <dl className="dl-horizontal">
         {this.props.messages.map((m, key) => <Message key={key} {...m} />)}
       </dl>
     )
@@ -34,7 +54,8 @@ class App extends Component {
 
   componentDidMount = () => {
     const intervalID = setInterval(this.fetchMessages, 5000);
-    this.setState({intervalID})
+    this.setState({intervalID});
+    this.fetchMessages();
   }
   componentWillUnmount = () => {
     clearInterval(this.state.intervalID);
@@ -51,7 +72,8 @@ class App extends Component {
     .catch(console.error);
   }
 
-  sendMessage = () => {
+  sendMessage = evt => {
+    evt.preventDefault();
     const headers = new Headers();
     headers.append("Authorization", "bearer " + this.props.token);
     headers.append("Content-Type", "application/json");
@@ -68,21 +90,26 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <MessageList messages={this.state.messages} />
-        <div>
-          <input
-            type="text"
-            value={this.state.current_message}
-            onChange={evt => this.setState({current_message: evt.target.value})}
-          />
-          <button
-            onClick={this.sendMessage}
-            disabled={this.state.current_message.trim() === ""}
-          >
-            Send
-          </button>
-        </div>
+        <Form
+          onSubmit={this.sendMessage}
+        >
+          <FormGroup>
+            <InputGroup>
+              <FormControl
+                type="text"
+                value={this.state.current_message}
+                onChange={evt => this.setState({current_message: evt.target.value})}
+              />
+              <InputGroup.Button
+                disabled={this.state.current_message.trim() === ""}
+              >
+                <Button type="submit">Send</Button>
+              </InputGroup.Button>
+            </InputGroup>
+          </FormGroup>
+        </Form>
       </div>
     );
   }
