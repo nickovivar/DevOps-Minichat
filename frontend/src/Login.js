@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, FormGroup, FormControl} from 'react-bootstrap';
+import {Button, Form, FormGroup, FormControl, InputGroup} from 'react-bootstrap';
 
 class Login extends Component {
   constructor(props) {
@@ -9,24 +9,37 @@ class Login extends Component {
     };
   }
 
-  setUsername = (evt) => this.setState({username: evt.target.value})
-  handleLogin = () => this.props.onLogin(this.state.username)
+  setUsername = evt => this.setState({username: evt.target.value})
+  handleLogin = evt => {
+    evt.preventDefault();
+    this.props.onLogin(this.state.username);
+  }
 
   render() {
     return (
       <div className="login">
         <h2>What's your name?</h2>
-        <FormControl
-          type="text"
-          value={this.state.username}
-          onChange={this.setUsername}
-          />
-        <Button
-          disabled={this.state.username.trim() === ""}
-          onClick={this.handleLogin}
+        <Form
+          onSubmit={this.handleLogin}
         >
-        Log in
-        </Button>
+          <FormGroup>
+            <InputGroup>
+              <FormControl
+                type="text"
+                value={this.state.username}
+                onChange={this.setUsername}
+                />
+              <InputGroup.Button>
+                <Button
+                  type="submit"
+                  disabled={this.state.username.trim() === ""}
+                >
+                Log in
+                </Button>
+              </InputGroup.Button>
+            </InputGroup>
+          </FormGroup>
+        </Form>
       </div>
     );
   }

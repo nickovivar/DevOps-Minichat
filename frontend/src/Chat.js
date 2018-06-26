@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import config from './config';
 import {Button, FormGroup, InputGroup, FormControl, Form} from 'react-bootstrap';
 
