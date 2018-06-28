@@ -33,6 +33,7 @@ function getMessages() {
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static("../frontend/build"));
 
 app.post('/api/login',
   (req, res) => {
@@ -73,4 +74,4 @@ app.post('/api/messages',
   }
 );
 
-app.listen(3001, () => console.log('Chat app listening on port 3001!'));
+app.listen(80, () => console.log('Chat app listening on port 80!'));
