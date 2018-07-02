@@ -3,6 +3,9 @@ const bodyParser = require('body-parser')
 const crypto = require('crypto');
 const cors = require('cors');
 
+const pgp = require('pg-promise')(/*options*/)
+const db = pgp(process.env.PG_CONN_STRING)
+
 const SECRET = "SUPERSECRET";
 const MAX_MESSAGES = 100;
 
@@ -46,6 +49,20 @@ app.post('/api/login',
   }
 );
 
+app.get('/api/check_db',
+  (req, res) => {
+    db.one('SELECT $1 AS value', 123)
+    .then(function (data) {
+      console.log('DATA:', data.value)
+      res.send(data)
+    })
+    .catch(function (error) {
+      console.log('ERROR:', error)
+      res.status(500).send("Database is unavailable");
+    })
+  }
+);
+
 app.get('/api/messages',
   (req, res) => {
     const token = req.headers.authorization.split(" ")[1];
@@ -74,4 +91,4 @@ app.post('/api/messages',
   }
 );
 
-app.listen(80, () => console.log('Chat app listening on port 80!'));
+app.listen(3001, () => console.log('Chat app listening on port 80!'));
