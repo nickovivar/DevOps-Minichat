@@ -91,4 +91,4 @@ app.post('/api/messages',
   }
 );
 
-app.listen(3001, () => console.log('Chat app listening on port 80!'));
+app.listen(3001, () => console.log('Chat app listening on port 3001!'));
