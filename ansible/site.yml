@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - role: jdauphant.nginx
+      nginx_http_params:
+        - sendfile "on"
+        - access_log "/var/log/nginx/access.log"
+      nginx_sites:
+        default:
+         - listen 80
+         - location / { proxy_pass http://localhost:3000; }  
+     
+    - role: servers
