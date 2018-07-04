@@ -1,0 +1,26 @@
+---
+- hosts: webserver
+  become: true
+  roles:
+    - role: jdauphant.nginx
+      nginx_http_params:
+        - sendfile "on"
+        - access_log "/var/log/nginx/access.log"
+      nginx_sites:
+        default:
+         - listen 80
+         - location / { proxy_pass http://localhost:3001; }  
+     
+    - role: geerlingguy.nodejs
+      tag: nodejs
+      nodejs_version: "8.x"
+
+    - role: ssh-keys
+      tag: ssh
+
+    - role: default-apps
+      tag: apps
+
+    - role: networking
+      tag: networking
+

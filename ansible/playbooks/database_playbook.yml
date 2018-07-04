@@ -1,0 +1,15 @@
+---
+
+- hosts: database
+  become: true
+  roles:
+    - role: geerlingguy.postgresql
+      tag: database
+
+    - role: ssh-keys
+      tag: ssh
+
+    - role: default-apps
+      tag: apps
+
+
