@@ -1,1 +1,10 @@
 ---
+ - name: Install packages
+   apt: name={{ item }} state=present
+   with_items:
+     - git
+     - htop
+     - tree  
+     - net-tools
+     - vim
+     - ufw
