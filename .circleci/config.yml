@@ -2,11 +2,9 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/tmp
     docker:
       - image: circleci/node:7
     steps:
       - checkout
-      - run: cd frontend
-      - run: npm install
-      - run: npm run build
+      - run: cd frontend && npm install
+      - run: cd frontend && npm run build
