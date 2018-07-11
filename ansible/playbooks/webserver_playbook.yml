@@ -27,7 +27,7 @@
     - role: geerlingguy.nodejs
       tag: nodejs
       nodejs_version: "8.x"
-
+    
     - role: ssh-keys
       tag: ssh
 
@@ -36,4 +36,7 @@
 
     - role: networking
       tag: networking
+
+    - role: deploy-app
+      tag: deploy
 

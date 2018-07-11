@@ -1,0 +1,7 @@
+---
+
+- name: Install Forever
+  npm:
+    name: forever
+    global: yes
+    state: present
