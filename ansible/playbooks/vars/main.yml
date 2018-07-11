@@ -1,0 +1,8 @@
+---
+postgresql_databases:
+  - name: minichat
+
+# The user was created, but the password doesn't
+postgresql_users:
+  - name: admin
+    password: admin

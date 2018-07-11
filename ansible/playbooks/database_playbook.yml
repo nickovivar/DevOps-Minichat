@@ -2,6 +2,22 @@
 
 - hosts: database
   become: true
+
+  tasks:
+    - name: Set a hostname
+      hostname:
+        name: "database"
+ 
+    - name: add hostname to /etc/hosts
+      lineinfile:
+        dest: /etc/hosts
+        regexp: '^127\.0\.0\.1[ \t]+localhost'
+        line: '127.0.0.1 localhost database'
+        state: present
+
+  vars_files: 
+    - vars/main.yml
+      
   roles:
     - role: geerlingguy.postgresql
       tag: database
