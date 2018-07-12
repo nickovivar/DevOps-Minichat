@@ -2,6 +2,6 @@
 
 - name: Set authorized key 
   authorized_key:
-    user: vagrant
+    user: "{{ ansible_user_id }}"
     state: present
     key: "{{  authorized_keys | join('\n') }}"
