@@ -14,6 +14,9 @@
         line: '127.0.0.1 localhost webserver'
         state: present
 
+  vars_files:
+    - vars/main.yml 
+
   roles:
     - role: jdauphant.nginx
       nginx_http_params:

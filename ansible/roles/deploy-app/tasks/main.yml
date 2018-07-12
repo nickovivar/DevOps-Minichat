@@ -5,3 +5,34 @@
     name: forever
     global: yes
     state: present
+
+- name: Creates app directory
+  file:
+    path: "{{ node_apps_location }}"
+    state: directory
+    recurse: yes
+
+- name: Copy app files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ node_apps_location }}"
+  with_items:
+    - "../../../../backend"
+    - "../../../../frontend"
+    - "../../../../Makefile"
+
+- name: replace line
+  lineinfile: 
+    dest: "{{ node_apps_location }}/frontend/src/config.js" 
+    regexp: 'serverURL: \"http://localhost:3001\"' 
+    line: '  serverURL: "http://localhost:8080"'
+    backrefs: yes
+
+- name: Check list of running Node.js apps.
+  command: forever list
+  register: forever_list
+  changed_when: false
+
+- name: Start example Node.js app.
+  command: "make run -C {{ node_apps_location }}"
+  when: "forever_list.stdout.find(node_apps_location + '/src/app.js') == -1"
