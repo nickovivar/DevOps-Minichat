@@ -1,4 +1,4 @@
-
+---
 version: 2
 jobs:
   build:
@@ -10,7 +10,6 @@ jobs:
       - run: cd frontend && npm run build
       - run: cd backend && npm install
   
-
  deploy:
     docker:
       - image: stackbuilders/hapistrano:latest
