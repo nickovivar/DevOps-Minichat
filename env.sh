@@ -1,0 +1,2 @@
+export REACT_APP_BACKEND_URL=
+export PG_CONN_STRING=

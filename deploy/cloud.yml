@@ -2,4 +2,4 @@ deploy_path: /var/projects/nanochat
 host: root@www.ansidock.com
 repo: https://github.com/nickovivar/DevOps-Minichat.git
 revision: origin/master
-restart_command: cd /var/projects/nanochat/current && make run
+restart_command: cd /var/projects/nanochat/current && . ./env.sh && make run
