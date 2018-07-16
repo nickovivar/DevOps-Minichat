@@ -19,7 +19,7 @@ jobs:
       - run:
           name: Deploy to staging
           no_output_timeout: 30m
-          command: hap deploy -c deploy/cloud.yaml        
+          command: hap deploy -c deploy/cloud.yml        
 
 workflows:
   version: 2
