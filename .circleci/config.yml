@@ -10,13 +10,17 @@ jobs:
       - run: cd frontend && npm run build
       - run: cd backend && npm install
   
-  deploy:
+
+ deploy:
     docker:
-      - image: circleci/node:7
+      - image: stackbuilders/hapistrano:latest
     steps:
       - checkout
-      - run: echo "Let's deploy the app..."
-      - run: echo "App deployed!" 
+      - run: echo -e "Host * \n  StrictHostKeyChecking no" >> ~/.ssh/config
+      - run:
+          name: Deploy to staging
+          no_output_timeout: 30m
+          command: hap deploy -c deploy/cloud.yaml        
 
 workflows:
   version: 2
