@@ -33,7 +33,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to NanoChat</h1>
+          <h1 className="App-title">NanoChat For Dummies</h1>
         </header>
         {this.state.is_loading && <h1>Loading</h1>}
         {!this.state.is_loading && this.state.auth_token === "" && <Login onLogin={this.login}/>}
