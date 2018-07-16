@@ -5,6 +5,7 @@ all:
 .PHONY: all
 
 run: all
-	cd backend && PG_CONN_STRING=blah forever restart src/app.js
+	forever stopall
+	cd backend && PG_CONN_STRING=blah forever start src/app.js
 
 .PHONY: run
