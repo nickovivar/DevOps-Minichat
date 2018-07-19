@@ -1,0 +1,6 @@
+---
+
+environment_variables_path: /etc/environment
+environment_variables:
+  REACT_APP_BACKEND_URL: "http://www.ansidock.com"
+  PG_CONN_STRING: blah

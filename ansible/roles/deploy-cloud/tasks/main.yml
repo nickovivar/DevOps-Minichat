@@ -21,12 +21,12 @@
     - "../../../../frontend"
     - "../../../../Makefile"
 
-- name: replace line
-  lineinfile: 
-    dest: "{{ node_apps_location }}/frontend/src/config.js" 
-    regexp: 'serverURL: \"http://localhost:3001\"' 
-    line: '  serverURL: "http://www.ansidock.com"'
-    backrefs: yes
+#- name: replace line
+#  lineinfile: 
+#    dest: "{{ node_apps_location }}/frontend/src/config.js" 
+#    regexp: 'serverURL: \"http://localhost:3001\"' 
+#    line: '  serverURL: "http://www.ansidock.com"'
+#    backrefs: yes
 
 - name: Check list of running Node.js apps.
   command: forever list

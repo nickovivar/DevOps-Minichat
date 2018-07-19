@@ -1,0 +1,11 @@
+certbot_create_standalone_stop_services:
+ - nginx
+certbot_create_if_missing: yes
+certbot_admin_email: "nickovivar@gmail.com"
+certbot_certs:
+  - domains:
+    - "{{ domain_name }}"
+certbot_certificates_path: "/etc/letsencrypt/live/"
+certbot_auto_renew: true
+certbot_auto_renew_user: root
+certbot_install_from_source: yes

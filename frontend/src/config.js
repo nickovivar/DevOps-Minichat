@@ -1,3 +1,3 @@
 export default {
-	serverURL: "http://www.ansidock.com"
+	serverURL: window.location.origin 
 };

@@ -1,0 +1,10 @@
+---
+
+- name: Configure environment variables
+  lineinfile:
+    dest: "{{ environment_variables_path }}"
+    regexp: "^{{ item.key }}="
+    line: "{{ item.key }}={{ item.value }}"
+    state: present
+  with_dict: "{{ environment_variables }}"
+  tags: environment-variables

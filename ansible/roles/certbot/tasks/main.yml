@@ -1,0 +1,11 @@
+---
+- include_role:
+    name: geerlingguy.certbot
+
+- name: Delete old ansible-role-certbot cron job entry
+  cron:
+    name: "Renew TLS certificates"
+    state: absent
+
+- name: Add dhparam
+  command: "openssl dhparam -dsaparam -out /etc/letsencrypt/live//dhparam.pem 4096"
