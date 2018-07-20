@@ -1,14 +1,14 @@
 ---
 version: 2
 jobs:
-  build_backend:
+  build-backend:
     docker:
       - image: circleci/node:7
     steps:
       - checkout
       - run: cd backend && npm install
   
-  build_frontend:
+  build-frontend:
     docker:
       - image: circleci/node:7
     steps:
@@ -31,10 +31,10 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - build_backend
-      - build_fontend
+      - build-backend
+      - build-frontend
       - deploy:
           requires:
-            - build_backend
-            - build_frontend
+            - build-backend
+            - build-frontend
 
