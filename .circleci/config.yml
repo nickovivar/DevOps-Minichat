@@ -13,7 +13,20 @@ jobs:
       - image: circleci/node:7
     steps:
       - checkout
+
+      - restore_cache:
+          keys:
+            - v1-npm-{{ .Branch }}-{{ checksum "frontend/package.json" }}
+            - v1-npm-{{ .Branch }}
+            - v1-npm
+      
       - run: cd frontend && npm install
+
+      - save_cache:
+          key: v1-npm-{{ .Branch }}-{{ checksum "frontend/package.json" }}
+          paths:
+            - frontend/node_modules
+
       - run: cd frontend && npm run build
          
   deploy:
