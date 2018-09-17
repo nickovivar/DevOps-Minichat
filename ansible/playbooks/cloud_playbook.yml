@@ -46,3 +46,6 @@
     - role: env-var
       tag: env-var
 
+# Deployment is executed by Circle CI
+#   - role: deploy-cloud
+#     tag: deploy-cloud
