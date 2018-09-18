@@ -1,4 +1,7 @@
 ---
+
+hostname: database
+
 postgresql_databases:
   - name: minichat
 
@@ -6,7 +9,3 @@ postgresql_databases:
 postgresql_users:
   - name: admin
     password: admin
-
-# App directory
-node_apps_location: /var/projects/nanochat
-

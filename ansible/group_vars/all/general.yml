@@ -1,0 +1,7 @@
+---
+
+# App directory
+node_apps_location: /var/projects/nanochat
+
+# Email Alerts
+uu_email_alerts: nickovivar@gmail.com

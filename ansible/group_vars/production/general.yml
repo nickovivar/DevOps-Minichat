@@ -1,2 +1,4 @@
 ---
+
+hostname: production
 domain_name: www.ansidock.com
