@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './sb.png';
+import logo from './ds.png';
 import './App.css';
 import Login from './Login';
 import Chat from './Chat';
@@ -33,7 +33,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">SB NanoChat</h1>
+          <h1 className="App-title">DevOps Minichat</h1>
         </header>
         {this.state.is_loading && <h1>Loading</h1>}
         {!this.state.is_loading && this.state.auth_token === "" && <Login onLogin={this.login}/>}
