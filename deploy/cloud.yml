@@ -1,4 +1,4 @@
-deploy_path: /var/projects/nanochat 
+deploy_path: /var/projects/DevOps-Minichat 
 host: root@www.ansidock.com
 repo: https://github.com/nickovivar/DevOps-Minichat.git
 revision: origin/master
