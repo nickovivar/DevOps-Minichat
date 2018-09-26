@@ -4,29 +4,31 @@
   
   roles:
     - role: set-hostname
-      tag: set-hostname
+      tags: set-hostname
 
     - role: jdauphant.nginx
       nginx_http_params:
         - sendfile "on"
         - access_log "/var/log/nginx/access.log"
-     
+    
     - role: geerlingguy.nodejs
-      tag: nodejs
+      tags: nodejs
       nodejs_version: "8.x"
     
     - role: ssh-keys
-      tag: ssh
+      tags: ssh
 
     - role: default-apps
-      tag: apps
+      tags: apps
 
     - role: networking
-      tag: networking
+      tags: networking
 
     - role: certbot
-      tag: certbot
+      tags: certbot
 
     - role: env-var
-      tag: env-var
-
+      tags: env-var
+    
+    - role: deploy-cloud
+      tags: deploy-cloud

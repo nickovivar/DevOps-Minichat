@@ -5,10 +5,10 @@ webserver ansible_host=192.168.11.10
 database ansible_host=192.168.11.20
 
 [production]
-cloud ansible_host=www.ansidock.com
+cloud ansible_host=minichat.stackbuilders.net
 
 [production:vars]
-ansible_ssh_user=root
+ansible_ssh_user=admin
 
 # Group 'multi' with all servers
 [multi:children]

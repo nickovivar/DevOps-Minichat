@@ -2,7 +2,9 @@
 
  - name: Lets Encrypt client
    git: dest=/opt/certbot clone=yes repo=https://github.com/certbot/certbot force=yes
- 
+
+
+
   # Auto-renew certificates and reload nginx
  
  - name: Add crontab to renew certificates
